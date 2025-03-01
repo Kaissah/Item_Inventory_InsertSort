@@ -17,8 +17,11 @@ public:
     int getID() const { return ID; }
     int getQTY() const { return QTY; }
 
-    // ? Generate random items
+    //  Generate random items
     static vector<Items> randomGenerator(int N) {
+    	//clear the notepad for a fresh new list
+    	string filename = "Items.txt";
+        ofstream file(filename.c_str(), ios_base::trunc);
         vector<Items> items;
         int idMin = 1, idMax = 100;
         int qtyMin = 1, qtyMax = 50;
@@ -34,7 +37,7 @@ public:
         return items;
     }
 
-    // ? Sort by ID
+    //  Sort by ID
     static void insertionSortID(vector<Items>& items) {
         string filename = "Items.txt";
         ofstream file(filename.c_str(), ios_base::app);
@@ -144,9 +147,10 @@ int main() {
             cout << "Invalid! Please enter a number from 1 to 5.\n";
             continue;
         }
-
+		cout<<endl;
         switch (choice) {
             case 1:
+            	system("cls");
                 cout << "Enter the number of items to generate: ";
                 if (!(cin >> num) || num <= 0) {
                     cin.clear();
@@ -155,11 +159,12 @@ int main() {
                     break;
                 }
                 items = Items::randomGenerator(num);
-                cout << "\nGenerated Items:\n";
+                //cout << "\nGenerated Items:\n";
                 Items::displayItems(items);
                 break;
 
             case 2:
+            	system("cls");
                 if (items.empty()) {
                     cout << "No items generated yet. Please generate items first.\n";
                 } else {
@@ -170,6 +175,7 @@ int main() {
                 break;
 
             case 3:
+            	system("cls");
                 if (items.empty()) {
                     cout << "No items generated yet. Please generate items first.\n";
                 } else {
@@ -180,6 +186,7 @@ int main() {
                 break;
 
             case 4:
+            	system("cls");
                 Items::loadSavedItems();
                 break;
 
@@ -194,4 +201,3 @@ int main() {
 
     return 0;
 }
-
